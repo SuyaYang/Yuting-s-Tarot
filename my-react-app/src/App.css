@@ -1,4 +1,4 @@
-/* Make the app root and page fill the viewport so the hero can be full-bleed */
+/* Make the app root and page fill the viewport */
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -27,12 +27,8 @@ html, body, #root {
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -90,20 +86,23 @@ html, body, #root {
 }
 
 .btn {
-  height: 64px;
-  min-width: 180px;
+  height: 93px;
+  min-width: 252px;
   padding: 0 1.5rem;
-  border-radius: 999px;
+  border-radius: 142px;
   border: none;
-  background: #D9D9D9;
+  background: #c9dbe9;
   font-family: 'Crimson Text', serif;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 25px;
+  color: black;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn.primary {
-  /* subtle shadow to indicate primary */
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
@@ -112,10 +111,17 @@ html, body, #root {
   outline-offset: 3px;
 }
 
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
 @media (max-width: 640px) {
   .hero-title { font-size: 3rem; }
   .hero-sub { font-size: 1rem; }
-  .btn { min-width: 140px; height: 56px; }
+  .btn { min-width: 140px; height: 56px; font-size: 16px; border-radius: 48px; }
 }
 
 /* About page styles */
@@ -136,17 +142,28 @@ html, body, #root {
   padding: 2rem;
 }
 
+.about-header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  margin-bottom: 0.5rem;
+}
+
 .about-decor {
   position: absolute;
   left: 50%;
-  top: 0;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 80vw;
-  max-width: 800px;
-  height: 80px;
-  background: #D9D9D9;
-  border-radius: 999px;
+  max-width: 900px;
+  height: 96px;
+  background: #c9dbe9;
+  border-radius: 142px;
   z-index: 0;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08), inset 0 -6px 18px rgba(255,255,255,0.06);
 }
 
 .about-title {
@@ -157,16 +174,11 @@ html, body, #root {
   margin: 0;
   z-index: 1;
   text-align: center;
-  padding: 1rem 0 0.25rem 0;
+  line-height: 1;
+  padding: 0.25rem 1rem;
 }
 
-.about-divider {
-  width: 60%;
-  height: 8px;
-  background: #D9D9D9;
-  transform: rotate(-1deg);
-  margin: 1.5rem auto 2rem auto;
-}
+.about-divider { display: none; }
 
 .about-text {
   font-family: 'Crimson Text', serif;
@@ -199,4 +211,290 @@ html, body, #root {
   .about-title { font-size: 2rem; }
   .about-decor { display: none; }
   .about-text { text-align: left; }
+}
+
+/* visual/backcard styles */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.about-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stack-card {
+  display: block;
+  width: 260px;
+  max-width: 80%;
+  border-radius: 8px;
+  box-shadow: 0 18px 36px rgba(0,0,0,0.18);
+  border: 6px solid #fff;
+  background: #fff;
+}
+
+.card-stack { position: relative; width: 260px; height: 420px; }
+.card-stack .card-1 { position: absolute; left: 0; top: 18px; transform: rotate(-6deg); z-index: 1; }
+.card-stack .card-2 { position: absolute; left: 22px; top: 6px; transform: rotate(-2deg); z-index: 2; }
+.card-stack .card-3 { position: absolute; left: 44px; top: 0; transform: rotate(0deg); z-index: 3; }
+
+@media (max-width: 980px) {
+  .about-layout { grid-template-columns: 1fr 320px; }
+  .card-stack { width: 220px; height: 360px; }
+  .stack-card { width: 220px; }
+}
+
+@media (max-width: 720px) {
+  .about-layout { grid-template-columns: 1fr; }
+  .about-visual { order: -1; margin-bottom: 1rem; }
+  .card-stack { width: 60%; height: auto; margin: 0 auto 1rem auto; }
+  .stack-card { width: 100%; position: static; transform: none; box-shadow: 0 10px 24px rgba(0,0,0,0.12); }
+}
+
+/* Shuffle page styles */
+.shuffle-page {
+  width: 100%;
+  height: 100vh;           /* lock to viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(180deg, #99D1EB 0%, #FCDADA 64%);
+  padding-top: 4rem;
+  box-sizing: border-box;
+  overflow: hidden;        /* no vertical scroll */
+}
+
+.shuffle-top {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.shuffle-header {
+  font-family: 'Lobster', cursive;
+  font-size: 40px;
+  color: #2d2d2d;
+  margin: 0;
+}
+.shuffle-sub {
+  font-family: 'Crimson Text', serif;
+  font-size: 24px;
+  max-width: 760px;
+  text-align: center;
+  margin: .5rem auto 1.5rem auto;
+  color: rgba(0,0,0,0.85);
+}
+
+/* central area where stack / fan lives */
+.shuffle-deck {
+  flex: 1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* stack pre-shuffle */
+.back-stack {
+  position: relative;
+  width: 320px;
+  height: 460px;
+  perspective: 1200px;
+}
+.stack-back {
+  position: absolute;
+  width: 280px;
+  height: 420px;
+  border-radius: 12px;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.2);
+  border: 6px solid #fff;
+  transform-origin: center center;
+}
+.back-a { left: 0;   top: 18px; transform: rotate(-8deg) translateZ(0); z-index: 1; }
+.back-b { left: 26px; top: 6px; transform: rotate(-3deg) translateZ(0); z-index: 2; }
+.back-c { left: 52px; top: 0;  transform: rotate(0deg)  translateZ(0); z-index: 3; }
+
+/* staggered shuffle animations */
+.back-stack.shuffling .back-a { animation: shuffle-a 1.2s cubic-bezier(.2,.9,.3,1) both }
+.back-stack.shuffling .back-b { animation: shuffle-b 1.2s cubic-bezier(.2,.9,.3,1) .08s both }
+.back-stack.shuffling .back-c { animation: shuffle-c 1.2s cubic-bezier(.2,.9,.3,1) .16s both }
+
+@keyframes shuffle-a {
+  0% { transform: translate(0,18px) rotate(-8deg) }
+  20% { transform: translate(-60px,-12px) rotate(-30deg) }
+  45% { transform: translate(20px,30px) rotate(8deg) }
+  70% { transform: translate(-10px,-6px) rotate(-6deg) }
+  100% { transform: translate(0,18px) rotate(-8deg) }
+}
+
+@keyframes shuffle-b {
+  0% { transform: translate(26px,6px) rotate(-3deg) }
+  20% { transform: translate(40px,-40px) rotate(30deg) }
+  45% { transform: translate(-32px,18px) rotate(-8deg) }
+  70% { transform: translate(18px,-8px) rotate(-2deg) }
+  100% { transform: translate(26px,6px) rotate(-3deg) }
+}
+
+@keyframes shuffle-c {
+  0% { transform: translate(52px,0) rotate(0deg) }
+  20% { transform: translate(90px,12px) rotate(20deg) }
+  45% { transform: translate(-10px,12px) rotate(-6deg) }
+  70% { transform: translate(40px,-4px) rotate(2deg) }
+  100% { transform: translate(52px,0) rotate(0deg) }
+}
+
+/* fan spread area */
+.spread-area {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: 460px;
+  margin: 0 auto;
+}
+
+/* base: all cards stacked in center bottom */
+.spread-card {
+  --offset: 0px;
+  --angle: 0deg;
+  --lift: 10px;
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 160px;
+  height: 260px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(0,0,0,0.18);
+  border: 6px solid #fff;
+  background: white;
+  cursor: pointer;
+  transform-origin: 50% 100%;
+  transform: translateX(-50%) translateY(0) rotate(0deg);
+  transition: transform 650ms cubic-bezier(.2,.9,.3,1), box-shadow 300ms;
+}
+
+.spread-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display:block;
+}
+
+.spread-card:disabled {
+  cursor: default;
+}
+
+/* when spread-active, apply fan transform */
+.spread-area.spread-active .spread-card {
+  transform:
+    translateX(calc(-50% + var(--offset)))
+    translateY(calc(-1 * var(--lift)))
+    rotate(var(--angle));
+}
+
+/* hover: subtle lift, no crazy movement */
+.spread-area.spread-active .spread-card:hover {
+  transform:
+    translateX(calc(-50% + var(--offset)))
+    translateY(calc(-1 * (var(--lift) + 8px)))
+    rotate(var(--angle))
+    scale(1.05);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.28);
+}
+
+.spread-area.animating .spread-card {
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,0.12));
+}
+
+.shuffle-actions {
+  display:flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* only animate hover when not disabled */
+.btn.pink {
+  background: #E5BEBE;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.btn.pink:not(:disabled):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* Pick page styles */
+.pick-page {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #99D1EB 0%, #FCDADA 64%);
+  padding: 4rem 2rem;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+}
+.pick-container {
+  background: white;
+  width: 90%;
+  max-width: 1200px;
+  height: 360px;
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  overflow: hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.cards-row {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  align-items:flex-start;
+  justify-content:center;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.pick-card {
+  width: 198px;
+  height: 336px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  border: 4px solid #fff;
+  display:inline-block;
+  padding:0;
+}
+.pick-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display:block;
+}
+
+.pick-actions {
+  margin-top: 1.5rem;
+  display:flex;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .shuffle-sub { font-size: 22px; }
+
+  .spread-area {
+    height: 380px;
+    max-width: 100%;
+  }
+  .spread-card {
+    width: 130px;
+    height: 220px;
+  }
+
+  .pick-container { height: 300px; }
+  .pick-card { width: 160px; height: 280px; }
 }

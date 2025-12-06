@@ -1,4 +1,5 @@
 import React from 'react'
+import backCard from './image/Back_Card.jpg'
 
 type Props = {
   onBack: () => void
@@ -15,23 +16,31 @@ const About: React.FC<Props> = ({ onBack }) => {
         <header className="about-header">
           <div className="about-decor" aria-hidden="true" />
           <h1 className="about-title">About</h1>
-        </header>
+  </header>
 
-        <div className="about-divider" aria-hidden="true" />
+        <div className="about-layout">
+          <article className="about-text" aria-label="About Positive Tarot">
+            <p>
+              Positive Tarot was created to inspire <strong>reflection, healing</strong>, and <strong>hope</strong>. Each
+              card serves as a mirror — not of fate, but of possibility — helping you uncover your strengths,
+              understand your emotions, and connect with your inner wisdom.
+            </p>
 
-        <article className="about-text" aria-label="About Positive Tarot">
-          <p>
-            Positive Tarot was created to inspire <strong>reflection, healing</strong>, and <strong>hope</strong>. Each
-            card serves as a mirror — not of fate, but of possibility — helping you uncover your strengths,
-            understand your emotions, and connect with your inner wisdom.
-          </p>
+            <p>
+              Designed by a tarot lover who believes in using the language of the cards to
+              <strong> share positivity</strong>, <strong>encouragement</strong>, and <strong>heartfelt wisdom</strong>,
+              Positive Tarot transforms traditional symbolism into a source of light for everyday life.
+            </p>
+          </article>
 
-          <p>
-            Designed by a tarot lover who believes in using the language of the cards to
-            <strong> share positivity</strong>, <strong>encouragement</strong>, and <strong>heartfelt wisdom</strong>,
-            Positive Tarot transforms traditional symbolism into a source of light for everyday life.
-          </p>
-        </article>
+          <aside className="about-visual" aria-hidden="true">
+            <div className="card-stack">
+              <img src={backCard} alt="Tarot card back" className="stack-card card-1" />
+              <img src={backCard} alt="Tarot card back" className="stack-card card-2" />
+              <img src={backCard} alt="Tarot card back" className="stack-card card-3" />
+            </div>
+          </aside>
+        </div>
 
         <nav className="about-controls" aria-label="About actions">
           <button className="btn" onClick={onBack}>Back</button>

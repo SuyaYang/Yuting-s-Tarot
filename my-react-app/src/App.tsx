@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import './App.css'
 import About from './About'
+import ShufflePage from './pages/ShufflePage'
 
 const App: React.FC = () => {
-  const [page, setPage] = useState<'home' | 'about'>('home')
+  const [page, setPage] = useState<'home' | 'about' | 'shuffle'>('home')
 
-  if (page === 'about') {
-    return <About onBack={() => setPage('home')} />
-  }
+  const startDrawing = () => setPage('shuffle')
+
+  if (page === 'about') return <About onBack={() => setPage('home')} />
+  if (page === 'shuffle') return <ShufflePage onBack={() => setPage('home')} />
 
   return (
     <div className="hero">
@@ -16,7 +18,7 @@ const App: React.FC = () => {
         <p className="hero-sub">Welcome to Positive Tarot, a space where every card shines with guidance, growth, and gentle wisdom.</p>
 
         <div className="hero-controls" role="group" aria-label="hero actions">
-          <button className="btn primary">Begin Drawing</button>
+          <button className="btn primary" onClick={startDrawing}>Begin Drawing</button>
           <button className="btn" onClick={() => setPage('about')}>About</button>
         </div>
       </div>
